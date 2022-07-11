@@ -2,9 +2,9 @@ package encryption
 
 import (
 	"crypto/elliptic"
+	"crypto/rand"
 	"fmt"
 	"math/big"
-	"math/rand"
 )
 
 type PrivateKey struct {
