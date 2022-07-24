@@ -2,32 +2,14 @@ package main
 
 import (
 	"fmt"
-	_ "math"
+	"fun/search"
 	"strings"
-	"testing"
 )
 
 func main() {
-	// y^2 = x^3 + ax + b
-	// y^2 = x^3 + 7 --> used by bitcoin cryptography for private key
-
-	// fName1 := "some.z"
-	// fName2 := "some.zpl.exe"
-	// f, err := changeLabelFileFormatToPDF(fName1)
-	// f2, err := changeLabelFileFormatToPDF(fName2)
-	// if err != nil {
-	// 	fmt.Print(err)
-	// }
-	// // fmt.Print(f)
-	// fmt.Print(f2)
-}
-
-func BenchmarkChangeLabelFileFormatToPDF(b *testing.B) {
-	files := []string{"some.zpl.exe", "some.zpl"}
-
-	for i := 0; i < b.N; i = i % len(files) {
-		changeLabelFileFormatToPDF(files[i])
-	}
+	v := []int{0, 2, 4, 6, 8, 12, 33}
+	x := search.LinearSearch(12, v)
+	fmt.Printf("Found at index %d value %d in array %v", x, 12, v)
 }
 
 func changeLabelFileFormatToPDF(fileName string) (string, error) {
