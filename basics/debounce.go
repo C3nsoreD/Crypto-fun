@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-type Circuit func(context.Context) (string, error)
+type Circuit func(context.Context) (string, error) // can represent any function
 
 func DebounceFirst(ciruit Circuit, d time.Duration) Circuit {
 	var thershold time.Time
