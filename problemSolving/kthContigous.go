@@ -7,6 +7,22 @@ import "fmt"
 func main() {
 	arr := []int{1, 3, 2, 6, -1, 4, 1, 8, 2}
 	k := 5
+	// v1 := kthContigous(arr, k)
+
+	v2 := slidingAvg(arr, k)
+	// fmt.Println(v1)
+	fmt.Println(v2)
+}
+
+func average(subArray []int, k int) float32 {
+	sum := 0
+	for _, v := range subArray {
+		sum += v
+	}
+	return float32(sum) / float32(k)
+}
+
+func kthContigous(arr []int, k int) []float32 {
 	averages := []float32{}
 	for i := 0; i < len(arr); i++ {
 		border := k + i
@@ -17,13 +33,22 @@ func main() {
 		avg := average(arr[i:border], k)
 		averages = append(averages, avg)
 	}
-	fmt.Println(averages)
+	return averages
 }
 
-func average(subArray []int, k int) float32 {
+func slidingAvg(arr []int, k int) []float32 {
 	sum := 0
-	for _, v := range subArray {
-		sum += v
+	start := 0
+	v2Result := []float32{}
+	// using sliding window
+	for boarder := 0; boarder < len(arr); boarder++ {
+		sum += arr[boarder]
+
+		if boarder >= k-1 { // staying within the sub array
+			v2Result = append(v2Result, float32(sum)/float32(k))
+			sum -= arr[start]
+			start++
+		}
 	}
-	return float32(sum) / float32(k)
+	return v2Result
 }
