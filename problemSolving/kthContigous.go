@@ -6,7 +6,7 @@ import "fmt"
 
 func main() {
 	arr := []int{1, 3, 2, 6, -1, 4, 1, 8, 2}
-	k := 5
+	k := 2
 	// v1 := kthContigous(arr, k)
 
 	v2 := slidingAvg(arr, k)
@@ -43,10 +43,9 @@ func slidingAvg(arr []int, k int) []float32 {
 	// using sliding window
 	for boarder := 0; boarder < len(arr); boarder++ {
 		sum += arr[boarder]
-
-		if boarder >= k-1 { // staying within the sub array
-			v2Result = append(v2Result, float32(sum)/float32(k))
-			sum -= arr[start]
+		if boarder >= k-1 {
+			v2Result = append(v2Result, float32(sum)/float32(k)) // store result
+			sum -= arr[start]                                    // reduce current sum, worm like movement skills!!
 			start++
 		}
 	}
