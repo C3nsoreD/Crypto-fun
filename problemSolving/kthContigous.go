@@ -9,10 +9,11 @@ func main() {
 	k := 5
 	averages := []float32{}
 	for i := 0; i < len(arr); i++ {
-		border := k + i - 1
-		if border > len(arr)-1 {
+		border := k + i
+		if border > len(arr) {
 			break
 		}
+		// fmt.Println(i, border, arr[i:border])
 		avg := average(arr[i:border], k)
 		averages = append(averages, avg)
 	}
@@ -24,6 +25,5 @@ func average(subArray []int, k int) float32 {
 	for _, v := range subArray {
 		sum += v
 	}
-	// fmt.Println(sum / k)
 	return float32(sum) / float32(k)
 }
